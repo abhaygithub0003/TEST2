@@ -1,0 +1,40 @@
+﻿@model CurrencyExchange.Models.CurrencyConversionModel
+
+<h2>Currency Converter</h2>
+
+<form asp-action="Index" method="post">
+    <div>
+        <label>Amount</label>
+        <input asp-for="Amount" />
+    </div>
+    <div>
+        <label>From Currency</label>
+        <input asp-for="FromCurrency" />
+    </div>
+    <div>
+        <label>To Currency</label>
+        <input asp-for="ToCurrency" />
+    </div>
+    <div>
+        <button type="submit">Convert</button>
+    </div>
+</form>
+
+@if (Model.Result.HasValue)
+{
+    <div>
+        <p>Converted Amount: @Model.Result.Value</p>
+    </div>
+}
+else if (Model.Result == null)
+{
+    <div>
+        <p>Waiting for conversion result...</p>
+    </div>
+}
+else
+{
+    <div>
+        <p>Error occurred during conversion.</p>
+    </div>
+}
